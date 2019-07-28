@@ -5,6 +5,12 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+@Component({
+  selector: 'app-serve',
+  templateUrl: './server/server.component.html',
+  styleUrls: ['./app.component.css']
+})
+
 export class AppComponent {
   name = 'Rohith';
 }
