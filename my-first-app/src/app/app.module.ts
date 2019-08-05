@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { ServerComponent } from './server/server.component';
 import { Server2Component } from './server2/server2.component';
 import { Server3Component } from './server3/server3.component';
+import { ServerStringinterpolationComponent } from './server-stringinterpolation/server-stringinterpolation.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { Server3Component } from './server3/server3.component';
     AppComponent,
     ServerComponent,
     Server2Component,
-    Server3Component
+    Server3Component,
+    ServerStringinterpolationComponent
   ],
   imports: [
     BrowserModule,
