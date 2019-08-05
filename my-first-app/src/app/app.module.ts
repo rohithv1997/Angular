@@ -10,6 +10,7 @@ import { ServerComponent } from './server/server.component';
 import { Server2Component } from './server2/server2.component';
 import { Server3Component } from './server3/server3.component';
 import { ServerStringinterpolationComponent } from './server-stringinterpolation/server-stringinterpolation.component';
+import { PropertybindingComponent } from './propertybinding/propertybinding.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { ServerStringinterpolationComponent } from './server-stringinterpolation
     ServerComponent,
     Server2Component,
     Server3Component,
-    ServerStringinterpolationComponent
+    ServerStringinterpolationComponent,
+    PropertybindingComponent
   ],
   imports: [
     BrowserModule,
