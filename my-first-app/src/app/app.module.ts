@@ -11,6 +11,7 @@ import { Server2Component } from './server2/server2.component';
 import { Server3Component } from './server3/server3.component';
 import { ServerStringinterpolationComponent } from './server-stringinterpolation/server-stringinterpolation.component';
 import { PropertybindingComponent } from './propertybinding/propertybinding.component';
+import { ServerEventBindingComponent } from './server-event-binding/server-event-binding.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { PropertybindingComponent } from './propertybinding/propertybinding.comp
     Server2Component,
     Server3Component,
     ServerStringinterpolationComponent,
-    PropertybindingComponent
+    PropertybindingComponent,
+    ServerEventBindingComponent
   ],
   imports: [
     BrowserModule,

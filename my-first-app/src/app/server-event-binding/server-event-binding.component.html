@@ -1,0 +1,6 @@
+<button 
+    class="btn btn-primary"
+    [disabled]="!isButtonEnabled" 
+    (click)="onServerCreate()">{{ComponentTitle}}</button>
+<p [innerText]="isButtonEnabled"></p>
+<p>{{serverCreationStatus}}</p>
