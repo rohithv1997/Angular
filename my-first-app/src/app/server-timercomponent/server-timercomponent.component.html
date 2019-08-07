@@ -1,0 +1,13 @@
+<button 
+    class="btn btn-outline-primary mr-1" 
+    (click)='startTimer()'
+    [innerText]="StartEvent"></button>
+<button 
+    class="btn btn-outline-primary mr-1" 
+    (click)='pauseTimer()'
+    [innerText]="PauseEvent"></button>
+<button 
+    class="btn btn-outline-primary mr-1" 
+    (click)='resetTimer()'
+    [innerText]="ResetEvent"></button>
+<p>{{timeLeft}} seconds remaining</p>
