@@ -1,13 +1,10 @@
 <button 
     class="btn btn-outline-primary mr-1" 
-    (click)='startTimer()'
-    [innerText]="StartEvent"></button>
-<button 
-    class="btn btn-outline-primary mr-1" 
-    (click)='pauseTimer()'
-    [innerText]="PauseEvent"></button>
+    (click)='StartOrPauseTimer()'
+    [innerText]="CurrentEvent"></button>
 <button 
     class="btn btn-outline-primary mr-1" 
     (click)='resetTimer()'
-    [innerText]="ResetEvent"></button>
+    [innerText]="ResetEvent"
+    [disabled]="isResetDisabled"></button>
 <p>{{timeLeft}} seconds remaining</p>

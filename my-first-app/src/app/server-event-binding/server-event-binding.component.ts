@@ -12,7 +12,7 @@ export class ServerEventBindingComponent implements OnInit {
   constructor() {
     this.isButtonEnabled = false;
     setTimeout(() => { this.isButtonEnabled = true; }, 2000);
-   }
+  }
 
   ngOnInit() {
   }
