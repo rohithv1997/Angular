@@ -9,7 +9,7 @@ export class ServerEventBindingComponent implements OnInit {
   isButtonEnabled = false;
   ComponentTitle = 'event binding';
   serverCreationStatus = 'NotCreated';
-  serverStatus = '';
+  serverStatus = 'Not initialised';
   constructor() {
     this.isButtonEnabled = false;
     setTimeout(() => { this.isButtonEnabled = true; }, 2000);

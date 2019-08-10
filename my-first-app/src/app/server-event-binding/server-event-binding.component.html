@@ -9,3 +9,7 @@
     class="form-control"
     (input)="onInputServerName($event)">
 <h1>{{serverStatus}}</h1>
+<input
+    type="text"
+    class="form-control"
+    [(ngModel)]="serverStatus">
