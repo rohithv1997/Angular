@@ -4,3 +4,8 @@
     (click)="onServerCreate()">{{ComponentTitle}}</button>
 <p [innerText]="isButtonEnabled"></p>
 <p>{{serverCreationStatus}}</p>
+<input 
+    type="text"
+    class="form-control"
+    (input)="onInputServerName($event)">
+<h1>{{serverStatus}}</h1>

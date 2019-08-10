@@ -9,6 +9,7 @@ export class ServerEventBindingComponent implements OnInit {
   isButtonEnabled = false;
   ComponentTitle = 'event binding';
   serverCreationStatus = 'NotCreated';
+  serverStatus = '';
   constructor() {
     this.isButtonEnabled = false;
     setTimeout(() => { this.isButtonEnabled = true; }, 2000);
@@ -19,5 +20,8 @@ export class ServerEventBindingComponent implements OnInit {
 
   onServerCreate() {
     this.serverCreationStatus = 'Server Created';
+  }
+  onInputServerName(event: Event) {
+    this.serverStatus = (event.target as HTMLInputElement).value;
   }
 }
