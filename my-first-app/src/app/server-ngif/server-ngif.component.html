@@ -1,0 +1,12 @@
+<input
+    type="text"
+    class="form-control"
+    [(ngModel)]="serverStatus">
+<p>{{serverCreationStatus}}</p>
+<button 
+    class="btn btn-primary"
+    (click)="onServerCreate()">{{ComponentTitle}}</button>
+<p *ngIf="serverCreated; else noServerCreated">Server created was {{serverStatus}}</p>
+<ng-template #noServerCreated>
+    <p>No Server was created</p>
+</ng-template>

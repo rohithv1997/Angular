@@ -13,6 +13,7 @@ import { ServerStringinterpolationComponent } from './server-stringinterpolation
 import { PropertybindingComponent } from './propertybinding/propertybinding.component';
 import { ServerEventBindingComponent } from './server-event-binding/server-event-binding.component';
 import { ServerTimercomponentComponent } from './server-timercomponent/server-timercomponent.component';
+import { ServerNgifComponent } from './server-ngif/server-ngif.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { ServerTimercomponentComponent } from './server-timercomponent/server-ti
     ServerStringinterpolationComponent,
     PropertybindingComponent,
     ServerEventBindingComponent,
-    ServerTimercomponentComponent
+    ServerTimercomponentComponent,
+    ServerNgifComponent
   ],
   imports: [
     BrowserModule,
