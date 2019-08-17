@@ -14,7 +14,7 @@ export class AppComponent {
 
   constructor() {
     this.currentVariable = 0;
-    this.isHiddenEnabled = true;
+    this.isHiddenEnabled = false;
     this.paragraph1 = 'Secret Password = tuna';
     this.setButtonName();
     if (this.incrementVariable.includes('0')) { this.incrementVariable.pop(); }
@@ -28,7 +28,7 @@ export class AppComponent {
   }
 
   setButtonName() {
-    this.buttonName = this.isHiddenEnabled ? 'Display Details' : 'Hide Details';
+    this.buttonName = this.isHiddenEnabled ? 'Hide Details' : 'Display Details';
   }
 
   getColor(val: number) {

@@ -14,7 +14,7 @@
 <button
   class="btn btn-primary"
   (click)="toggleParagraph()">{{buttonName}}</button>
-<p [hidden]="isHiddenEnabled">{{paragraph1}}</p>
+<p *ngIf="isHiddenEnabled">{{paragraph1}}</p>
 <h1 
   *ngFor="let incrementVar of incrementVariable"
   [ngStyle]="{backgroundColor: getColor(incrementVar)}"
