@@ -15,6 +15,7 @@ import { ServerEventBindingComponent } from './server-event-binding/server-event
 import { ServerTimercomponentComponent } from './server-timercomponent/server-timercomponent.component';
 import { ServerNgifComponent } from './server-ngif/server-ngif.component';
 import { ServerNgStyleComponent } from './server-ng-style/server-ng-style.component';
+import { ServerNgclassComponent } from './server-ngclass/server-ngclass.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { ServerNgStyleComponent } from './server-ng-style/server-ng-style.compon
     ServerEventBindingComponent,
     ServerTimercomponentComponent,
     ServerNgifComponent,
-    ServerNgStyleComponent
+    ServerNgStyleComponent,
+    ServerNgclassComponent
   ],
   imports: [
     BrowserModule,

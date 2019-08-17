@@ -1,0 +1,12 @@
+<input
+    type="text"
+    class="form-control">
+<button 
+    class="btn btn-primary"
+    (click)="onServerCreate()">{{ComponentTitle}}</button>
+<p 
+    [ngStyle]="{backgroundColor: getColorForServerStatus1()}"
+    [ngClass]="{online: getClassForServerStatus1(),offline: !getClassForServerStatus1()}">Server created was {{serverStatus1}}</p>
+<p 
+    [ngStyle]="{backgroundColor: getColorForServerStatus2()}"
+    [ngClass]="{online: getClassForServerStatus2()}">Server Created was {{serverStatus2}}</p>
