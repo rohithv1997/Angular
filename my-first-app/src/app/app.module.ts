@@ -16,6 +16,7 @@ import { ServerTimercomponentComponent } from './server-timercomponent/server-ti
 import { ServerNgifComponent } from './server-ngif/server-ngif.component';
 import { ServerNgStyleComponent } from './server-ng-style/server-ng-style.component';
 import { ServerNgclassComponent } from './server-ngclass/server-ngclass.component';
+import { ServerNgforComponent } from './server-ngfor/server-ngfor.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { ServerNgclassComponent } from './server-ngclass/server-ngclass.componen
     ServerTimercomponentComponent,
     ServerNgifComponent,
     ServerNgStyleComponent,
-    ServerNgclassComponent
+    ServerNgclassComponent,
+    ServerNgforComponent
   ],
   imports: [
     BrowserModule,
