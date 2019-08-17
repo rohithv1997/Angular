@@ -12,6 +12,8 @@ export class ServerNgforComponent implements OnInit {
   serverName: string;
   servers = ['Server1', 'Server2'];
   ComponentTitle = 'ngFor Component';
+  ComponentTitle2 = 'ngFor Index component';
+  logTimeStamps: Date[] = [];
   constructor() {
     this.serverStatus1 = this.getServerStatus();
     this.serverStatus2 = this.getServerStatus();
@@ -42,5 +44,8 @@ export class ServerNgforComponent implements OnInit {
   }
   getClassForServerStatus2() {
     return this.serverStatus2 === 'online';
+  }
+  onServerCreateLog() {
+    this.logTimeStamps.push(new Date());
   }
 }
