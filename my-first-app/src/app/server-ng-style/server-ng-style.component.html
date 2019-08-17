@@ -1,0 +1,8 @@
+<input
+    type="text"
+    class="form-control">
+<button 
+    class="btn btn-primary"
+    (click)="onServerCreate()">{{ComponentTitle}}</button>
+<p [ngStyle]="{backgroundColor: getColorForServerStatus1()}">Server created was {{serverStatus1}}</p>
+<p [ngStyle]="{backgroundColor: getColorForServerStatus2()}">Server Created was {{serverStatus2}}</p>

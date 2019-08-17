@@ -14,6 +14,7 @@ import { PropertybindingComponent } from './propertybinding/propertybinding.comp
 import { ServerEventBindingComponent } from './server-event-binding/server-event-binding.component';
 import { ServerTimercomponentComponent } from './server-timercomponent/server-timercomponent.component';
 import { ServerNgifComponent } from './server-ngif/server-ngif.component';
+import { ServerNgStyleComponent } from './server-ng-style/server-ng-style.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { ServerNgifComponent } from './server-ngif/server-ngif.component';
     PropertybindingComponent,
     ServerEventBindingComponent,
     ServerTimercomponentComponent,
-    ServerNgifComponent
+    ServerNgifComponent,
+    ServerNgStyleComponent
   ],
   imports: [
     BrowserModule,
