@@ -1,9 +1,9 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1,
+  "version": 1, 
   "newProjectRoot": "projects",
   "projects": {
-    "udemyProject": {
+    "debugging": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/udemyProject",
+            "outputPath": "dist/debugging",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -67,18 +67,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "udemyProject:build"
+            "browserTarget": "debugging:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "udemyProject:build:production"
+              "browserTarget": "debugging:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "udemyProject:build"
+            "browserTarget": "debugging:build"
           }
         },
         "test": {
@@ -93,9 +93,14 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.slim.min.js",
+              "node_modules/popper.js/dist/umd/popper.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           }
         },
         "lint": {
@@ -115,15 +120,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "udemyProject:serve"
+            "devServerTarget": "debugging:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "udemyProject:serve:production"
+              "devServerTarget": "debugging:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "udemyProject"
+  "defaultProject": "debugging"
 }
