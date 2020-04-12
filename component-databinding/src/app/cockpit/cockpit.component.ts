@@ -1,4 +1,5 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { ElementDto } from '../Helpers/elementdto.model';
 
 @Component({
   selector: 'app-cockpit',
@@ -9,8 +10,8 @@ export class CockpitComponent implements OnInit {
   newServerName = '';
   newServerContent = '';
 
-  @Output() serverCreated = new EventEmitter<{ serverName: string, serverContent: string }>();
-  @Output() blueprintCreated = new EventEmitter<{ serverName: string, serverContent: string }>();
+  @Output() serverCreated = new EventEmitter<ElementDto>();
+  @Output() blueprintCreated = new EventEmitter<ElementDto>();
 
   constructor() { }
 
@@ -18,10 +19,10 @@ export class CockpitComponent implements OnInit {
   }
 
   onAddServer() {
-    this.serverCreated.emit({ serverName: this.newServerName, serverContent: this.newServerContent });
+    this.serverCreated.emit(new ElementDto(this.newServerName, this.newServerContent));
   }
 
   onAddBlueprint() {
-    this.blueprintCreated.emit({ serverName: this.newServerName, serverContent: this.newServerContent });
+    this.blueprintCreated.emit(new ElementDto(this.newServerName, this.newServerContent));
   }
 }

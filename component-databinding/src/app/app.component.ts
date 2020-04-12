@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ElementDto } from './Helpers/elementdto.model';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   serverElements = [{type: 'server', name: 'TestServer', content: 'ServerContent1'}];
 
-  onServerCreated(serverData: {serverName: string, serverContent: string}) {
+  onServerCreated(serverData: ElementDto) {
     this.serverElements.push({
       type: 'server',
       name: serverData.serverName,
@@ -16,7 +17,7 @@ export class AppComponent {
     });
   }
 
-  onBlueprintCreated(blueprintData: {serverName: string, serverContent: string}) {
+  onBlueprintCreated(blueprintData: ElementDto) {
     this.serverElements.push({
       type: 'blueprint',
       name: blueprintData.serverName,
