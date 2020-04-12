@@ -8,9 +8,9 @@ describe('CockpitComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CockpitComponent ]
+      declarations: [CockpitComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
