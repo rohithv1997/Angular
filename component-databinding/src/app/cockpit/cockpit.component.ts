@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, ViewChild, ElementRef } from '@angular/core';
 import { ElementDto } from '../Helpers/elementdto.model';
 
 @Component({
@@ -7,22 +7,27 @@ import { ElementDto } from '../Helpers/elementdto.model';
   styleUrls: ['./cockpit.component.css']
 })
 export class CockpitComponent implements OnInit {
-  newServerName = '';
-  newServerContent = '';
-
   @Output() serverCreated = new EventEmitter<ElementDto>();
   @Output() blueprintCreated = new EventEmitter<ElementDto>();
+  @ViewChild('serverContentInput') contentInput: ElementRef;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  onAddServer() {
-    this.serverCreated.emit(new ElementDto(this.newServerName, this.newServerContent));
+  onAddServer(nameInput: HTMLInputElement) {
+    this.logInputs(nameInput, this.contentInput.nativeElement.value);
+    this.serverCreated.emit(new ElementDto(nameInput.value, this.contentInput.nativeElement.value));
   }
 
-  onAddBlueprint() {
-    this.blueprintCreated.emit(new ElementDto(this.newServerName, this.newServerContent));
+  onAddBlueprint(nameInput: HTMLInputElement) {
+    this.logInputs(nameInput, this.contentInput.nativeElement.value);
+    this.blueprintCreated.emit(new ElementDto(nameInput.value, this.contentInput.nativeElement.value));
+  }
+
+  logInputs(nameInput: HTMLInputElement, contentInput: HTMLInputElement) {
+    console.log(nameInput);
+    console.log(contentInput);
   }
 }
