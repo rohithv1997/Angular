@@ -2,7 +2,7 @@
 <ul class="list-group">
   <li
     class="list-group-item"
-    *ngFor="let user of users; let i = index">
-    {{ user }} | <a href="#" (click)="onSetToActive(i)">Set to Active</a>
+    *ngFor="let user of inactiveUsers">
+    {{ user }} | <a href="#" (click)="onSetToActive(user)">Set to Active</a>
   </li>
 </ul>
