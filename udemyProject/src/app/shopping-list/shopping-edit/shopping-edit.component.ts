@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild, Output, EventEmitter } from '@angular/core';
-import { Constants } from 'src/app/shared/constants';
-import { Ingredient } from 'src/app/shared/ingredient.model';
+import { Constants } from 'src/helpers/constants';
+import { Ingredient } from 'src/helpers/ingredient.model';
+
 
 @Component({
   selector: 'app-shopping-edit',

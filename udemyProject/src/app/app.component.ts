@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Constants } from './shared/constants';
+import { Constants } from 'src/helpers/constants';
+
 
 @Component({
   selector: 'app-root',

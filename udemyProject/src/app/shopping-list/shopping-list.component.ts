@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Ingredient } from 'src/helpers/ingredient.model';
 
-import { Ingredient } from '../shared/ingredient.model';
 
 @Component({
   selector: 'app-shopping-list',
