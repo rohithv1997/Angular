@@ -14,7 +14,5 @@ export class DropDownDirective implements OnInit {
         this.isOpen = !this.isOpen;
     }
 
-    ngOnInit() {
-
-    }
+    ngOnInit() { }
 }
