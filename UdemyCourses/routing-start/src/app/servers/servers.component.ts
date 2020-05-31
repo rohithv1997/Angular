@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ServersService } from 'src/Services/servers.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Server } from 'src/Models/server.model';
 
 
 @Component({
@@ -9,7 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./servers.component.css']
 })
 export class ServersComponent implements OnInit {
-  public servers: { id: number, name: string, status: string }[] = [];
+  public servers: Server[] = [];
 
   constructor(private serversService: ServersService,
               private router: Router,
