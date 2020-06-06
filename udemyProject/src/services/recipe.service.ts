@@ -43,6 +43,10 @@ export class RecipeService {
         return this.recipes.slice();
     }
 
+    getRecipe(index: number): Recipe {
+        return this.recipes[index];
+    }
+
     getRecipeSelectedEvent(): EventEmitter<Recipe> {
         return this.recipeSelected;
     }
