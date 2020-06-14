@@ -8,21 +8,4 @@ import { Constants } from 'src/helpers/constants';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  loadedFeature: string;
-
-  constructor() {
-    this.loadedFeature = Constants.recipe;
-  }
-
-  isRecipeSelected(): boolean {
-    return this.loadedFeature === Constants.recipe;
-  }
-
-  isShoppingListSelected(): boolean {
-    return this.loadedFeature === Constants.shoppinglist;
-  }
-
-  onNavigate(feature: string) {
-    this.loadedFeature = feature;
-  }
 }
