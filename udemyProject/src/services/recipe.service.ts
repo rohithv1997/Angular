@@ -12,10 +12,12 @@ import { Subject } from 'rxjs';
 export class RecipeService {
     private recipes: Recipe[];
     private recipeSelected: Subject<Recipe>;
+    private recipeChangedEvent: Subject<Recipe[]>;
 
     constructor(private shoppingListService: ShoppingListService) {
         this.recipes = [];
         this.recipeSelected = new Subject<Recipe>();
+        this.recipeChangedEvent = new Subject<Recipe[]>();
         this.addRecipes();
     }
 
@@ -40,19 +42,42 @@ export class RecipeService {
                 ]));
     }
 
-    getRecipes(): Recipe[] {
+    public getRecipes(): Recipe[] {
         return this.recipes.slice();
     }
 
-    getRecipe(index: number): Recipe {
+    public getRecipe(index: number): Recipe {
         return this.recipes[index];
     }
 
-    getRecipeSelectedEvent(): Subject<Recipe> {
+    public getRecipeSelectedEvent(): Subject<Recipe> {
         return this.recipeSelected;
     }
 
     public addIngredientsToShoppingList(ingredients: Ingredient[]) {
         this.shoppingListService.addIngredients(ingredients);
+    }
+
+    private emitRecipeChangedEvent(): void {
+        this.recipeChangedEvent.next(this.getRecipes());
+    }
+
+    public getReceipeChangedEvent(): Subject<Recipe[]> {
+        return this.recipeChangedEvent;
+    }
+
+    public addRecipe(recipe: Recipe): void {
+        this.recipes.push(recipe);
+        this.emitRecipeChangedEvent();
+    }
+
+    public updateRecipe(index: number, newRecipe: Recipe): void {
+        this.recipes[index] = newRecipe;
+        this.emitRecipeChangedEvent();
+    }
+
+    public deleteRecipe(index: number): void{
+        this.recipes.splice(index, 1);
+        this.emitRecipeChangedEvent();
     }
 }
