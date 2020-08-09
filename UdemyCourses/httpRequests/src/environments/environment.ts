@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebaseURL: 'https://ng-udemy-a0985.firebaseio.com/posts.json'
 };
 
 /*
