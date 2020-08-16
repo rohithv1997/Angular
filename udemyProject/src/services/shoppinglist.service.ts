@@ -1,4 +1,4 @@
-import { Ingredient } from 'src/helpers/ingredient.model';
+import { Ingredient } from 'src/models/ingredient.model';
 import { Subject } from 'rxjs';
 import { Injectable } from '@angular/core';
 

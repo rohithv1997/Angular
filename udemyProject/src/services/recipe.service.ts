@@ -1,7 +1,7 @@
-import { Recipe } from 'src/helpers/recipe.model';
+import { Recipe } from 'src/models/recipe.model';
 import { Constants } from 'src/helpers/constants';
 import { Injectable } from '@angular/core';
-import { Ingredient } from 'src/helpers/ingredient.model';
+import { Ingredient } from 'src/models/ingredient.model';
 import { ShoppingListService } from './shoppinglist.service';
 import { Subject } from 'rxjs';
 
@@ -79,5 +79,10 @@ export class RecipeService {
     public deleteRecipe(index: number): void{
         this.recipes.splice(index, 1);
         this.emitRecipeChangedEvent();
+    }
+
+    public setRecipes(recipes: Recipe[]): void{
+      this.recipes = recipes;
+      this.emitRecipeChangedEvent();
     }
 }
