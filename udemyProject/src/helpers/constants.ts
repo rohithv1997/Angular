@@ -12,5 +12,6 @@ export const Constants =
     SwitchTo: 'Switch to ',
     EMAIL_EXISTS: 'EMAIL_EXISTS',
     INVALID_PASSWORD: 'INVALID_PASSWORD',
-    EMAIL_NOT_FOUND: 'EMAIL_NOT_FOUND'
+    EMAIL_NOT_FOUND: 'EMAIL_NOT_FOUND',
+    LocalStorageKey: 'userData'
   };

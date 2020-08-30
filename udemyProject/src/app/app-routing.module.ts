@@ -7,6 +7,7 @@ import {RecipeDetailComponent} from './recipes/recipe-detail/recipe-detail.compo
 import {RecipeEditComponent} from './recipes/recipe-edit/recipe-edit.component';
 import {RecipeResolverService} from "../services/recipe-resolver.service";
 import {AuthenticationComponent} from "./authentication/authentication.component";
+import {AuthenticationGuardService} from "../services/authentication-guard.service";
 
 const appRoutes: Routes = [
   {
@@ -19,7 +20,10 @@ const appRoutes: Routes = [
     children: [
       {
         path: '',
-        component: RecipeStartComponent
+        component: RecipeStartComponent,
+        canActivate: [
+          AuthenticationGuardService
+        ]
       },
       {
         path: 'new',

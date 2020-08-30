@@ -19,7 +19,7 @@ import {RecipeEditComponent} from './recipes/recipe-edit/recipe-edit.component';
 import {RecipeService} from 'src/services/recipe.service';
 import {AuthenticationComponent} from './authentication/authentication.component';
 import {LoadingSpinnerComponent} from './loading-spinner/loading-spinner.component';
-import {AuthInterceptorService} from "../services/auth-interceptor.service";
+import {AuthenticationInterceptorService} from "../services/authentication-interceptor.service";
 
 @NgModule({
   declarations: [
@@ -49,7 +49,7 @@ import {AuthInterceptorService} from "../services/auth-interceptor.service";
     RecipeService,
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptorService,
+      useClass: AuthenticationInterceptorService,
       multi: true
     }
   ],

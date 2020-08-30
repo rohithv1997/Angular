@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {environment} from "../environments/environment";
-import {BehaviorSubject, Observable, Subject, throwError} from "rxjs";
+import {BehaviorSubject, Observable, throwError} from "rxjs";
 import {IAuthResponseData} from "../models/IAuthResponseData";
 import {catchError, tap} from "rxjs/operators";
 import {Constants} from "../helpers/constants";
@@ -15,6 +15,7 @@ import {Router} from "@angular/router";
 export class AuthenticationService {
 
   userSubject = new BehaviorSubject<User>(null);
+  private tokenExpirationTimer: any;
 
   constructor(private httpClient: HttpClient, private router: Router) {
   }
@@ -31,7 +32,36 @@ export class AuthenticationService {
 
   public logout() {
     this.userSubject.next(null);
-    this.router.navigateByUrl('/auth');
+    this.router.navigateByUrl('/auth').then(r => r);
+    localStorage.removeItem(Constants.LocalStorageKey);
+    if (this.tokenExpirationTimer) {
+      clearTimeout(this.tokenExpirationTimer);
+    }
+    this.tokenExpirationTimer = null;
+  }
+
+  public autoLogin(): void {
+    const userData: {
+      email: string;
+      id: string;
+      _token: string;
+      _tokenExpirationDate: string;
+    } = JSON.parse(localStorage.getItem(Constants.LocalStorageKey));
+    if (!userData) {
+      return;
+    }
+    const loadedUser = new User(userData.email, userData.id, userData._token, new Date(userData._tokenExpirationDate));
+    if (loadedUser.token) {
+      this.userSubject.next(loadedUser);
+      const expirationDuration = new Date(userData._tokenExpirationDate).getTime() - new Date().getTime();
+      this.autoLogout(expirationDuration);
+    }
+  }
+
+  public autoLogout(expirationDuration: number): void {
+    this.tokenExpirationTimer = setTimeout(() => {
+      this.logout();
+    }, expirationDuration);
   }
 
   private sendRequest(email: string, password: string, postUrl: string): Observable<IAuthResponseData> {
@@ -43,14 +73,14 @@ export class AuthenticationService {
         "returnSecureToken": true
       }
     ).pipe(
-      catchError(this.handleErrorResponse),
+      catchError(AuthenticationService.handleErrorResponse),
       tap(responseData => {
         this.handleAuthentication(responseData.email, responseData.localId, responseData.idToken, +responseData.expiresIn);
       })
     );
   }
 
-  private handleErrorResponse(errorResponse: HttpErrorResponse): Observable<IAuthResponseData> {
+  private static handleErrorResponse(errorResponse: HttpErrorResponse): Observable<IAuthResponseData> {
     let errorMessage = 'An unknown error occurred';
     if (!errorResponse.error || !errorResponse.error.error) {
       return throwError(errorMessage);
@@ -73,5 +103,7 @@ export class AuthenticationService {
     const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
     const user = new User(email, userId, token, expirationDate);
     this.userSubject.next(user);
+    localStorage.setItem(Constants.LocalStorageKey, JSON.stringify(user));
+    this.autoLogout(expiresIn * 1000);
   }
 }
