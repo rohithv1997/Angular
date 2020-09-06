@@ -1,21 +1,27 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ComponentFactoryResolver, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Constants} from "../../helpers/constants";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthenticationService} from "../../services/authentication.service";
 import {Router} from "@angular/router";
+import {AlertComponent} from "../alert/alert.component";
+import {PlaceholderDirective} from "../../directives/placeholder.directive";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-authentication',
   templateUrl: './authentication.component.html',
   styleUrls: ['./authentication.component.css']
 })
-export class AuthenticationComponent implements OnInit {
+export class AuthenticationComponent implements OnInit, OnDestroy {
   signupForm: FormGroup;
   isLoginMode = true;
   isLoading = false;
   error: string = null;
+  @ViewChild(PlaceholderDirective) alertHost: PlaceholderDirective;
+  private closeSubscription: Subscription;
 
-  constructor(private authenticationService: AuthenticationService, private router: Router) {
+  constructor(private authenticationService: AuthenticationService, private router: Router
+    , private componentFactoryResolver: ComponentFactoryResolver) {
   }
 
   ngOnInit(): void {
@@ -23,6 +29,10 @@ export class AuthenticationComponent implements OnInit {
       email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null, [Validators.required, Validators.minLength(6)])
     })
+  }
+
+  onHandleError(): void {
+    this.error = null;
   }
 
   onSwitchMode(): void {
@@ -54,6 +64,7 @@ export class AuthenticationComponent implements OnInit {
         console.log(errorMessage);
         this.flipIsLoading();
         this.error = errorMessage;
+        this.showErrorAlert(errorMessage);
       });
 
     this.signupForm.reset();
@@ -81,5 +92,23 @@ export class AuthenticationComponent implements OnInit {
 
   private flipIsLoading() {
     this.isLoading = !this.isLoading;
+  }
+
+  private showErrorAlert(error: string): void {
+    const alertComponentFactory = this.componentFactoryResolver.resolveComponentFactory(AlertComponent);
+    const hostViewContainerRef = this.alertHost.viewContainerRef;
+    hostViewContainerRef.clear();
+    const componentRef = hostViewContainerRef.createComponent(alertComponentFactory);
+    componentRef.instance.message = error;
+    this.closeSubscription = componentRef.instance.close.subscribe(() => {
+      this.closeSubscription.unsubscribe();
+      hostViewContainerRef.clear();
+    });
+  }
+
+  ngOnDestroy() {
+    if(this.closeSubscription){
+      this.closeSubscription.unsubscribe();
+    }
   }
 }
