@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpParams} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {RecipeService} from './recipe.service';
 import {environment} from '../environments/environment';
 import {Recipe} from '../models/recipe.model';
-import {exhaustMap, map, take, tap} from 'rxjs/operators';
-import {Observable, Subscription} from 'rxjs';
+import {map, tap} from 'rxjs/operators';
+import {Observable} from 'rxjs';
 import {AuthenticationService} from './authentication.service';
 
 @Injectable({

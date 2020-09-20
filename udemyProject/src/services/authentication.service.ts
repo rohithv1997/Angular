@@ -63,16 +63,16 @@ export class AuthenticationService {
     const userData: {
       email: string;
       id: string;
-      _token: string;
-      _tokenExpirationDate: string;
+      token: string;
+      tokenExpirationDate: string;
     } = JSON.parse(localStorage.getItem(Constants.LocalStorageKey));
     if (!userData) {
       return;
     }
-    const loadedUser = new User(userData.email, userData.id, userData._token, new Date(userData._tokenExpirationDate));
+    const loadedUser = new User(userData.email, userData.id, userData.token, new Date(userData.tokenExpirationDate));
     if (loadedUser.Token) {
       this.userSubject.next(loadedUser);
-      const expirationDuration = new Date(userData._tokenExpirationDate).getTime() - new Date().getTime();
+      const expirationDuration = new Date(userData.tokenExpirationDate).getTime() - new Date().getTime();
       this.autoLogout(expirationDuration);
     }
   }
