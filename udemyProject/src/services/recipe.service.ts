@@ -18,7 +18,6 @@ export class RecipeService {
         this.recipes = [];
         this.recipeSelected = new Subject<Recipe>();
         this.recipeChangedEvent = new Subject<Recipe[]>();
-        //this.addRecipes();
     }
 
     private addRecipes(): void {

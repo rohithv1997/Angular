@@ -1,11 +1,11 @@
 import {Component, ComponentFactoryResolver, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {Constants} from "../../helpers/constants";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {AuthenticationService} from "../../services/authentication.service";
-import {Router} from "@angular/router";
-import {AlertComponent} from "../alert/alert.component";
-import {PlaceholderDirective} from "../../directives/placeholder.directive";
-import {Subscription} from "rxjs";
+import {Constants} from '../../helpers/constants';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {AuthenticationService} from '../../services/authentication.service';
+import {Router} from '@angular/router';
+import {AlertComponent} from '../shared/alert/alert.component';
+import {PlaceholderDirective} from '../shared/directives/placeholder.directive';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-authentication',
@@ -20,15 +20,16 @@ export class AuthenticationComponent implements OnInit, OnDestroy {
   @ViewChild(PlaceholderDirective) alertHost: PlaceholderDirective;
   private closeSubscription: Subscription;
 
-  constructor(private authenticationService: AuthenticationService, private router: Router
-    , private componentFactoryResolver: ComponentFactoryResolver) {
+  constructor(private authenticationService: AuthenticationService,
+              private router: Router,
+              private componentFactoryResolver: ComponentFactoryResolver) {
   }
 
   ngOnInit(): void {
     this.signupForm = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null, [Validators.required, Validators.minLength(6)])
-    })
+    });
   }
 
   onHandleError(): void {
@@ -100,14 +101,14 @@ export class AuthenticationComponent implements OnInit, OnDestroy {
     hostViewContainerRef.clear();
     const componentRef = hostViewContainerRef.createComponent(alertComponentFactory);
     componentRef.instance.message = error;
-    this.closeSubscription = componentRef.instance.close.subscribe(() => {
+    this.closeSubscription = componentRef.instance.alertComponentClose.subscribe(() => {
       this.closeSubscription.unsubscribe();
       hostViewContainerRef.clear();
     });
   }
 
   ngOnDestroy() {
-    if(this.closeSubscription){
+    if (this.closeSubscription){
       this.closeSubscription.unsubscribe();
     }
   }

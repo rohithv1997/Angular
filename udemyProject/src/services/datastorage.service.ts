@@ -1,11 +1,11 @@
-import {Injectable} from "@angular/core";
-import {HttpClient, HttpParams} from "@angular/common/http";
-import {RecipeService} from "./recipe.service";
-import {environment} from "../environments/environment";
-import {Recipe} from "../models/recipe.model";
-import {exhaustMap, map, take, tap} from "rxjs/operators";
-import {Observable, Subscription} from "rxjs";
-import {AuthenticationService} from "./authentication.service";
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpParams} from '@angular/common/http';
+import {RecipeService} from './recipe.service';
+import {environment} from '../environments/environment';
+import {Recipe} from '../models/recipe.model';
+import {exhaustMap, map, take, tap} from 'rxjs/operators';
+import {Observable, Subscription} from 'rxjs';
+import {AuthenticationService} from './authentication.service';
 
 @Injectable({
   providedIn: 'root'
@@ -36,8 +36,8 @@ export class DataStorageService {
               recipe.name,
               recipe.description,
               recipe.imagePath,
-              recipe.ingredients ? recipe.ingredients : [])
-          })
+              recipe.ingredients ? recipe.ingredients : []);
+          });
         }),
         tap(recipes => {
           this.recipeService.setRecipes(recipes);

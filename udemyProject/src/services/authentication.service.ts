@@ -1,12 +1,12 @@
-import {Injectable} from "@angular/core";
-import {HttpClient, HttpErrorResponse} from "@angular/common/http";
-import {environment} from "../environments/environment";
-import {BehaviorSubject, Observable, throwError} from "rxjs";
-import {IAuthResponseData} from "../models/IAuthResponseData";
-import {catchError, tap} from "rxjs/operators";
-import {Constants} from "../helpers/constants";
-import {User} from "../models/user.model";
-import {Router} from "@angular/router";
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {environment} from '../environments/environment';
+import {BehaviorSubject, Observable, throwError} from 'rxjs';
+import {IAuthResponseData} from '../models/IAuthResponseData';
+import {catchError, tap} from 'rxjs/operators';
+import {Constants} from '../helpers/constants';
+import {User} from '../models/user.model';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -14,10 +14,29 @@ import {Router} from "@angular/router";
 
 export class AuthenticationService {
 
+  constructor(private httpClient: HttpClient, private router: Router) {
+  }
+
   userSubject = new BehaviorSubject<User>(null);
   private tokenExpirationTimer: any;
 
-  constructor(private httpClient: HttpClient, private router: Router) {
+  private static handleErrorResponse(errorResponse: HttpErrorResponse): Observable<IAuthResponseData> {
+    let errorMessage = 'An unknown error occurred';
+    if (!errorResponse.error || !errorResponse.error.error) {
+      return throwError(errorMessage);
+    }
+    switch (errorResponse.error.error.message) {
+      case Constants.EMAIL_EXISTS:
+        errorMessage = 'This email exists already';
+        break;
+      case Constants.EMAIL_NOT_FOUND:
+        errorMessage = 'This email does not exist';
+        break;
+      case Constants.INVALID_PASSWORD:
+        errorMessage = 'The password is invalid';
+        break;
+    }
+    return throwError(errorMessage);
   }
 
   public signUp(email: string, password: string): Observable<IAuthResponseData> {
@@ -51,7 +70,7 @@ export class AuthenticationService {
       return;
     }
     const loadedUser = new User(userData.email, userData.id, userData._token, new Date(userData._tokenExpirationDate));
-    if (loadedUser.token) {
+    if (loadedUser.Token) {
       this.userSubject.next(loadedUser);
       const expirationDuration = new Date(userData._tokenExpirationDate).getTime() - new Date().getTime();
       this.autoLogout(expirationDuration);
@@ -68,9 +87,9 @@ export class AuthenticationService {
     return this.httpClient.post<IAuthResponseData>(
       postUrl,
       {
-        "email": email,
-        "password": password,
-        "returnSecureToken": true
+        email,
+        password,
+        returnSecureToken: true
       }
     ).pipe(
       catchError(AuthenticationService.handleErrorResponse),
@@ -78,25 +97,6 @@ export class AuthenticationService {
         this.handleAuthentication(responseData.email, responseData.localId, responseData.idToken, +responseData.expiresIn);
       })
     );
-  }
-
-  private static handleErrorResponse(errorResponse: HttpErrorResponse): Observable<IAuthResponseData> {
-    let errorMessage = 'An unknown error occurred';
-    if (!errorResponse.error || !errorResponse.error.error) {
-      return throwError(errorMessage);
-    }
-    switch (errorResponse.error.error.message) {
-      case Constants.EMAIL_EXISTS:
-        errorMessage = 'This email exists already';
-        break;
-      case Constants.EMAIL_NOT_FOUND:
-        errorMessage = 'This email does not exist';
-        break;
-      case Constants.INVALID_PASSWORD:
-        errorMessage = 'The password is invalid';
-        break;
-    }
-    return throwError(errorMessage);
   }
 
   private handleAuthentication(email: string, userId: string, token: string, expiresIn: number) {
