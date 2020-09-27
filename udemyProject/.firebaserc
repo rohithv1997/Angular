@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "ng-udemyproject",
+    "ng-udemyproject": "ng-udemyproject"
+  }
+}
