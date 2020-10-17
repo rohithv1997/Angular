@@ -1,5 +1,4 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Constants} from 'src/helpers/constants';
 import {DataStorageService} from '../../services/datastorage.service';
 import {AuthenticationService} from '../../services/authentication.service';
 import {Subscription} from 'rxjs';
