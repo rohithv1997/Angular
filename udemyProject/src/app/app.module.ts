@@ -7,7 +7,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core.module';
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 import * as fromApp from '../store/app.reducer';
+import { AuthenticationEffects } from 'src/store/Authentication/Authentication.Effects';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,7 @@ import * as fromApp from '../store/app.reducer';
     BrowserModule,
     HttpClientModule,
     StoreModule.forRoot(fromApp.appReducer),
+    EffectsModule.forRoot([AuthenticationEffects]),
     AppRoutingModule,
     SharedModule,
     CoreModule

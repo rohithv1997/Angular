@@ -12,7 +12,9 @@ export class Logout extends AbstractAuthenticationStoreAction {
   execute(state: IAuthenticationState): IAuthenticationState {
     return {
       ...state,
-      user: null
+      user: null,
+      authError: null,
+      isLoading: false
     };
   }
 }

@@ -6,6 +6,9 @@ import {Router} from '@angular/router';
 import {AlertComponent} from '../shared/alert/alert.component';
 import {PlaceholderDirective} from '../shared/directives/placeholder.directive';
 import {Subscription} from 'rxjs';
+import * as fromApp from '../../store/IAppState';
+import { Store } from '@ngrx/store';
+import { LoginStart } from 'src/store/Authentication/Actions/LoginStart';
 
 @Component({
   selector: 'app-authentication',
@@ -22,13 +25,27 @@ export class AuthenticationComponent implements OnInit, OnDestroy {
 
   constructor(private authenticationService: AuthenticationService,
               private router: Router,
-              private componentFactoryResolver: ComponentFactoryResolver) {
+              private componentFactoryResolver: ComponentFactoryResolver,
+              private store: Store<fromApp.IAppState>) {
   }
 
   ngOnInit(): void {
     this.signupForm = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null, [Validators.required, Validators.minLength(6)])
+    });
+
+    this.store.select('authentication').subscribe(authState => {
+      this.isLoading = authState.isLoading;
+      this.error = authState.authError;
+
+      if (this.error){
+        this.showErrorAlert(this.error);
+        this.flipIsLoading();
+      }
+      if (authState.user){
+        this.flipIsLoading();
+      }
     });
   }
 
@@ -50,23 +67,8 @@ export class AuthenticationComponent implements OnInit, OnDestroy {
     const password = this.signupForm.value.password;
     const authObservable =
       this.isLoginMode
-        ? this.authenticationService.login(email, password)
+        ? this.store.dispatch(new LoginStart({email, password}))
         : this.authenticationService.signUp(email, password);
-
-    this.flipIsLoading();
-
-    authObservable.subscribe(
-      response => {
-        console.log(response);
-        this.flipIsLoading();
-        this.router.navigateByUrl('/recipes');
-      },
-      errorMessage => {
-        console.log(errorMessage);
-        this.flipIsLoading();
-        this.error = errorMessage;
-        this.showErrorAlert(errorMessage);
-      });
 
     this.signupForm.reset();
   }

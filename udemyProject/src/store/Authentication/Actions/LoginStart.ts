@@ -1,21 +1,19 @@
-import { User } from 'src/models/user.model';
 import { AbstractAuthenticationStoreAction } from '../AbstractAuthenticationStoreActions';
 import { AuthenticationActionNames } from '../AuthenticationActionNames';
 import { IAuthenticationState } from '../State/IAuthentication.State';
 
-export class Login extends AbstractAuthenticationStoreAction {
-  readonly type = AuthenticationActionNames.LOGIN;
+export class LoginStart extends AbstractAuthenticationStoreAction {
+  readonly type = AuthenticationActionNames.LOGIN_START;
 
-  constructor(public payload: User) {
+  constructor(public payload: { email: string; password: string }) {
     super(payload);
   }
 
   execute(state: IAuthenticationState): IAuthenticationState {
     return {
       ...state,
-      user: this.payload,
       authError: null,
-      isLoading: false
+      isLoading: true
     };
   }
 }
