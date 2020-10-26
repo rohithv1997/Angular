@@ -1,5 +1,5 @@
 import { Ingredient } from 'src/models/ingredient.model';
-import { AbstractShoppingListStoreAction } from 'src/store/Shopping-List/AbstractShoppingListStoreAction';
+import { AbstractShoppingListStoreAction } from '../AbstractShoppingListStoreAction';
 import { ShoppingListActionNames } from '../ShoppingListActionNames';
 import { IShoppingListState } from '../state/IShoppingList.State';
 

@@ -6,7 +6,7 @@ import { ShoppingListService } from './shoppinglist.service';
 import { Subject } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AddIngredients } from 'src/store/Shopping-List/Actions/AddIngredients';
-import * as fromShoppingList from '../store/Shopping-List/State/IShoppingList.State';
+import * as fromApp from '../store/IAppState';
 
 @Injectable({
     providedIn: 'root'
@@ -17,7 +17,7 @@ export class RecipeService {
     private recipeSelected: Subject<Recipe>;
     private recipeChangedEvent: Subject<Recipe[]>;
 
-    constructor(private shoppingListService: ShoppingListService, private store: Store<fromShoppingList.IAppState>) {
+    constructor(private shoppingListService: ShoppingListService, private store: Store<fromApp.IAppState>) {
         this.recipes = [];
         this.recipeSelected = new Subject<Recipe>();
         this.recipeChangedEvent = new Subject<Recipe[]>();

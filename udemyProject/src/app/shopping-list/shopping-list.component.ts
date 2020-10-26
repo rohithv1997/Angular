@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as fromShoppingList from '../../store/Shopping-List/State/IShoppingList.State';
 import { StartEdit } from 'src/store/Shopping-List/Actions/StartEdit';
+import * as fromApp from '../../store/IAppState';
 
 @Component({
   selector: 'app-shopping-list',
@@ -15,7 +16,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
 
   constructor(
     private shoppingListService: ShoppingListService,
-    private store: Store<fromShoppingList.IAppState>
+    private store: Store<fromApp.IAppState>
   ) {}
 
   ngOnInit() {

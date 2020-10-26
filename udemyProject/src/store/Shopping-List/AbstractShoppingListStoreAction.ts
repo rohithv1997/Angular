@@ -1,10 +1,6 @@
-import { Action } from '@ngrx/store';
+import { AbstractStoreAction } from '../AbstractStoreAction';
 import { IShoppingListState } from './state/IShoppingList.State';
 
-export abstract class AbstractShoppingListStoreAction implements Action {
-  abstract readonly type: string;
+export abstract class AbstractShoppingListStoreAction extends AbstractStoreAction<IShoppingListState> {
 
-  constructor(public payload: any) {}
-
-  abstract execute(state: IShoppingListState): IShoppingListState;
 }

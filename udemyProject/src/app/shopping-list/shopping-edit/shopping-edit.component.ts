@@ -7,7 +7,7 @@ import { AddIngredient } from 'src/store/Shopping-List/Actions/AddIngredient';
 import { DeleteIngredient } from 'src/store/Shopping-List/Actions/DeleteIngredient';
 import { StopEdit } from 'src/store/Shopping-List/Actions/StopEdit';
 import { UpdateIngredient } from 'src/store/Shopping-List/Actions/UpdateIngredient';
-import * as fromShoppingList from '../../../store/Shopping-List/State/IShoppingList.State';
+import * as fromApp from '../../../store/IAppState';
 
 @Component({
   selector: 'app-shopping-edit',
@@ -21,7 +21,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
   private editedItem: Ingredient;
 
   constructor(
-    private store: Store<fromShoppingList.IAppState>
+    private store: Store<fromApp.IAppState>
   ) {
     this.isEdit = false;
   }

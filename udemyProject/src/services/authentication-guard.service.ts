@@ -3,19 +3,24 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {AuthenticationService} from './authentication.service';
 import {map, take} from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+import * as fromApp from '../store/IAppState';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationGuardService implements CanActivate {
-  constructor(private  authenticationService: AuthenticationService, private router: Router) {
+  constructor(private  authenticationService: AuthenticationService, private router: Router, private store: Store<fromApp.IAppState>) {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
   Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.authenticationService.userSubject
+    return this.store.select('authentication')
       .pipe(
         take(1),
+        map(authState => {
+          return authState.user;
+        }),
         map(user => {
           const isAuth = !!user;
           if (isAuth) {
