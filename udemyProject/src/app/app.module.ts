@@ -10,6 +10,11 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import * as fromApp from '../store/app.reducer';
 import * as fromAppEffects from '../store/app.Effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from 'src/environments/environment';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +27,9 @@ import * as fromAppEffects from '../store/app.Effects';
     EffectsModule.forRoot(fromAppEffects.appEffect),
     AppRoutingModule,
     SharedModule,
-    CoreModule
+    CoreModule,
+    StoreDevtoolsModule.instrument({logOnly: environment.canEnableNgrxStoreDevTools}),
+    StoreRouterConnectingModule.forRoot()
   ],
   bootstrap: [AppComponent]
 })
