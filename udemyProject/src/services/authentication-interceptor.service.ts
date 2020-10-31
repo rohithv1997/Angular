@@ -9,7 +9,7 @@ import * as fromApp from '../store/IAppState';
 @Injectable()
 export class AuthenticationInterceptorService implements HttpInterceptor {
 
-  constructor(private authenticationService: AuthenticationService, private store: Store<fromApp.IAppState>) {
+  constructor(private store: Store<fromApp.IAppState>) {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {

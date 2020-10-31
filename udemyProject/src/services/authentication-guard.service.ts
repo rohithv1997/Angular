@@ -10,7 +10,7 @@ import * as fromApp from '../store/IAppState';
   providedIn: 'root'
 })
 export class AuthenticationGuardService implements CanActivate {
-  constructor(private  authenticationService: AuthenticationService, private router: Router, private store: Store<fromApp.IAppState>) {
+  constructor(private router: Router, private store: Store<fromApp.IAppState>) {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):

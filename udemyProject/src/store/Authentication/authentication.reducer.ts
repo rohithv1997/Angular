@@ -14,6 +14,10 @@ export function authenticationReducer(state = initialState, action: AbstractAuth
     case AuthenticationActionNames.LOGOUT:
     case AuthenticationActionNames.LOGIN_START:
     case AuthenticationActionNames.LOGIN_FAIL:
+    case AuthenticationActionNames.SIGNUP:
+    case AuthenticationActionNames.SIGNUP_START:
+    case AuthenticationActionNames.CLEAR_ERROR:
+    case AuthenticationActionNames.AUTO_LOGIN:
       return action.execute(state);
     default:
       return state;

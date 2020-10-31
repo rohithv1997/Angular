@@ -12,10 +12,11 @@ import * as fromApp from '../../store/IAppState';
   styleUrls: ['./shopping-list.component.css'],
 })
 export class ShoppingListComponent implements OnInit, OnDestroy {
+  // used in async pipe ngfor
   shoppingListDetails: Observable<fromShoppingList.IShoppingListState>;
 
+
   constructor(
-    private shoppingListService: ShoppingListService,
     private store: Store<fromApp.IAppState>
   ) {}
 
@@ -27,5 +28,6 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
     this.store.dispatch(new StartEdit(index));
   }
 
-  ngOnDestroy() { }
+  ngOnDestroy() {
+   }
 }

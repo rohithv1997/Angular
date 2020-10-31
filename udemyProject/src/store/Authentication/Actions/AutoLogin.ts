@@ -1,20 +1,17 @@
-import { LoginInfo } from 'src/models/logininfo.model';
 import { AbstractAuthenticationStoreAction } from '../AbstractAuthenticationStoreActions';
 import { AuthenticationActionNames } from '../AuthenticationActionNames';
 import { IAuthenticationState } from '../State/IAuthentication.State';
 
-export class LoginStart extends AbstractAuthenticationStoreAction {
-  readonly type = AuthenticationActionNames.LOGIN_START;
+export class AutoLogin extends AbstractAuthenticationStoreAction {
+  readonly type = AuthenticationActionNames.AUTO_LOGIN;
 
-  constructor(public payload: LoginInfo) {
-    super(payload);
+  constructor() {
+    super(null);
   }
 
   execute(state: IAuthenticationState): IAuthenticationState {
     return {
-      ...state,
-      authError: null,
-      isLoading: true
+      ...state
     };
   }
 }

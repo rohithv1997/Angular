@@ -9,8 +9,7 @@ import { CoreModule } from './core.module';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import * as fromApp from '../store/app.reducer';
-import { AuthenticationEffects } from 'src/store/Authentication/Authentication.Effects';
-
+import * as fromAppEffects from '../store/app.Effects';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +19,7 @@ import { AuthenticationEffects } from 'src/store/Authentication/Authentication.E
     BrowserModule,
     HttpClientModule,
     StoreModule.forRoot(fromApp.appReducer),
-    EffectsModule.forRoot([AuthenticationEffects]),
+    EffectsModule.forRoot(fromAppEffects.appEffect),
     AppRoutingModule,
     SharedModule,
     CoreModule

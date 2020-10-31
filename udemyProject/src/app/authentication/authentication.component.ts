@@ -9,6 +9,9 @@ import {Subscription} from 'rxjs';
 import * as fromApp from '../../store/IAppState';
 import { Store } from '@ngrx/store';
 import { LoginStart } from 'src/store/Authentication/Actions/LoginStart';
+import { LoginInfo } from 'src/models/logininfo.model';
+import { SignupStart } from 'src/store/Authentication/Actions/SignupStart';
+import { ClearError } from 'src/store/Authentication/Actions/ClearError';
 
 @Component({
   selector: 'app-authentication',
@@ -22,10 +25,9 @@ export class AuthenticationComponent implements OnInit, OnDestroy {
   error: string = null;
   @ViewChild(PlaceholderDirective) alertHost: PlaceholderDirective;
   private closeSubscription: Subscription;
+  private authSubscription: Subscription;
 
-  constructor(private authenticationService: AuthenticationService,
-              private router: Router,
-              private componentFactoryResolver: ComponentFactoryResolver,
+  constructor(private componentFactoryResolver: ComponentFactoryResolver,
               private store: Store<fromApp.IAppState>) {
   }
 
@@ -35,7 +37,7 @@ export class AuthenticationComponent implements OnInit, OnDestroy {
       password: new FormControl(null, [Validators.required, Validators.minLength(6)])
     });
 
-    this.store.select('authentication').subscribe(authState => {
+    this.authSubscription =  this.store.select('authentication').subscribe(authState => {
       this.isLoading = authState.isLoading;
       this.error = authState.authError;
 
@@ -50,7 +52,7 @@ export class AuthenticationComponent implements OnInit, OnDestroy {
   }
 
   onHandleError(): void {
-    this.error = null;
+    this.store.dispatch(new ClearError());
   }
 
   onSwitchMode(): void {
@@ -65,10 +67,13 @@ export class AuthenticationComponent implements OnInit, OnDestroy {
 
     const email = this.signupForm.value.email;
     const password = this.signupForm.value.password;
-    const authObservable =
-      this.isLoginMode
-        ? this.store.dispatch(new LoginStart({email, password}))
-        : this.authenticationService.signUp(email, password);
+    const loginInfo = new LoginInfo(email, password);
+    if (this.isLoginMode) {
+      this.store.dispatch(new LoginStart(loginInfo));
+    }
+    else {
+      this.store.dispatch(new SignupStart(loginInfo));
+    }
 
     this.signupForm.reset();
   }
@@ -112,6 +117,9 @@ export class AuthenticationComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     if (this.closeSubscription){
       this.closeSubscription.unsubscribe();
+    }
+    if (this.authSubscription) {
+      this.authSubscription.unsubscribe();
     }
   }
 }

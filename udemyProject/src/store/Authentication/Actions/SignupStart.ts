@@ -3,10 +3,10 @@ import { AbstractAuthenticationStoreAction } from '../AbstractAuthenticationStor
 import { AuthenticationActionNames } from '../AuthenticationActionNames';
 import { IAuthenticationState } from '../State/IAuthentication.State';
 
-export class LoginStart extends AbstractAuthenticationStoreAction {
-  readonly type = AuthenticationActionNames.LOGIN_START;
+export class SignupStart extends AbstractAuthenticationStoreAction{
+  readonly type = AuthenticationActionNames.SIGNUP_START;
 
-  constructor(public payload: LoginInfo) {
+  constructor(public payload: LoginInfo){
     super(payload);
   }
 
@@ -17,4 +17,5 @@ export class LoginStart extends AbstractAuthenticationStoreAction {
       isLoading: true
     };
   }
+
 }
