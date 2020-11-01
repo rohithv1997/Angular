@@ -1,11 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {DataStorageService} from '../../services/datastorage.service';
 import {Subscription} from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as fromApp from '../../store/IAppState';
 import {map} from 'rxjs/operators';
 import { Logout } from 'src/store/Authentication/Actions/Logout';
 import { FetchRecipes } from 'src/store/Recipes/Actions/FetchRecipes';
+import { StoreRecipes } from 'src/store/Recipes/Actions/StoreRecipes';
 
 @Component({
   selector: 'app-header',
@@ -16,7 +16,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isAuthenticated = false;
   private userSubscription: Subscription;
   constructor(
-    private dataStorageService: DataStorageService,
     private store: Store<fromApp.IAppState>) {
   }
 
@@ -29,7 +28,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   public onSaveData(): void {
-    this.dataStorageService.storeRecipes();
+    this.store.dispatch(new StoreRecipes());
   }
 
   public onFetchData(): void {

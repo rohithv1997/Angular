@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ShoppingListService } from 'src/services/shoppinglist.service';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as fromShoppingList from '../../store/Shopping-List/IShoppingList.State';

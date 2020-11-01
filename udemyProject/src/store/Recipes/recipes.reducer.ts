@@ -13,6 +13,7 @@ export function recipesReducer(state = initialState, action: AbstractRecipeStore
     case RecipeActionNames.ADD_RECIPE:
     case RecipeActionNames.UPDATE_RECIPE:
     case RecipeActionNames.DELETE_RECIPE:
+    case RecipeActionNames.STORE_RECIPE:
       return action.execute(state);
     default:
       return state;
