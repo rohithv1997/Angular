@@ -1,7 +1,7 @@
 import { Ingredient } from 'src/models/ingredient.model';
 import { AbstractShoppingListStoreAction } from '../AbstractShoppingListStoreAction';
 import { ShoppingListActionNames } from '../ShoppingListActionNames';
-import { IShoppingListState } from '../state/IShoppingList.State';
+import { IShoppingListState } from '../IShoppingList.State';
 
 export class AddIngredient extends AbstractShoppingListStoreAction {
   readonly type = ShoppingListActionNames.ADD_INGREDIENT;

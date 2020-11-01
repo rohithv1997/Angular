@@ -1,5 +1,5 @@
 import { AbstractStoreAction } from '../AbstractStoreAction';
-import { IShoppingListState } from './state/IShoppingList.State';
+import { IShoppingListState } from './IShoppingList.State';
 
 export abstract class AbstractShoppingListStoreAction extends AbstractStoreAction<IShoppingListState> {
 

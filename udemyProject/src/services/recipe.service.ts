@@ -82,9 +82,4 @@ export class RecipeService {
         this.recipes.splice(index, 1);
         this.emitRecipeChangedEvent();
     }
-
-    public setRecipes(recipes: Recipe[]): void{
-      this.recipes = recipes;
-      this.emitRecipeChangedEvent();
-    }
 }

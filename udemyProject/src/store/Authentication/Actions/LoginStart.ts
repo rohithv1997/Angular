@@ -1,7 +1,7 @@
 import { LoginInfo } from 'src/models/logininfo.model';
 import { AbstractAuthenticationStoreAction } from '../AbstractAuthenticationStoreActions';
 import { AuthenticationActionNames } from '../AuthenticationActionNames';
-import { IAuthenticationState } from '../State/IAuthentication.State';
+import { IAuthenticationState } from '../IAuthentication.State';
 
 export class LoginStart extends AbstractAuthenticationStoreAction {
   readonly type = AuthenticationActionNames.LOGIN_START;

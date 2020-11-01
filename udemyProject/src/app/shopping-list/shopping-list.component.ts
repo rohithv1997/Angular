@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ShoppingListService } from 'src/services/shoppinglist.service';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import * as fromShoppingList from '../../store/Shopping-List/State/IShoppingList.State';
+import * as fromShoppingList from '../../store/Shopping-List/IShoppingList.State';
 import { StartEdit } from 'src/store/Shopping-List/Actions/StartEdit';
 import * as fromApp from '../../store/IAppState';
 

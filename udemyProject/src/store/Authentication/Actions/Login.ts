@@ -1,7 +1,7 @@
 import { User } from 'src/models/user.model';
 import { AbstractAuthenticationStoreAction } from '../AbstractAuthenticationStoreActions';
 import { AuthenticationActionNames } from '../AuthenticationActionNames';
-import { IAuthenticationState } from '../State/IAuthentication.State';
+import { IAuthenticationState } from '../IAuthentication.State';
 
 export class Login extends AbstractAuthenticationStoreAction {
   readonly type = AuthenticationActionNames.LOGIN;

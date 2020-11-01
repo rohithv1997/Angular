@@ -1,6 +1,6 @@
 import { AbstractShoppingListStoreAction } from '../AbstractShoppingListStoreAction';
 import { ShoppingListActionNames } from '../ShoppingListActionNames';
-import { IShoppingListState } from '../state/IShoppingList.State';
+import { IShoppingListState } from '../IShoppingList.State';
 
 export class StopEdit extends AbstractShoppingListStoreAction {
   readonly type = ShoppingListActionNames.STOP_EDIT;

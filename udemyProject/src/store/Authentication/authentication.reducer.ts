@@ -1,6 +1,6 @@
 import { AbstractAuthenticationStoreAction } from './AbstractAuthenticationStoreActions';
 import { AuthenticationActionNames } from './AuthenticationActionNames';
-import { IAuthenticationState } from './State/IAuthentication.State';
+import { IAuthenticationState } from './IAuthentication.State';
 
 const initialState: IAuthenticationState = {
   user: null,
