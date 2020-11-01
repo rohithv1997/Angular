@@ -20,7 +20,7 @@ export class AuthSignupEffect {
   ) {}
 
   @Effect()
-  public AuthSignup$: Observable<Login | LoginFail> = this.actions$.pipe(
+  public AuthSignup: Observable<Login | LoginFail> = this.actions$.pipe(
     ofType(AuthenticationActionNames.SIGNUP_START),
     switchMap((authData: SignupStart) => {
       return this.authService
@@ -37,7 +37,7 @@ export class AuthSignupEffect {
               responseData.idToken,
               +responseData.expiresIn
             );
-            this.localStorageService.setUser(login.payload);
+            this.localStorageService.setUser(login.payload.user);
             return login;
           }),
           catchError((error) => {

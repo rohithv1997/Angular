@@ -1,1 +1,5 @@
-export const recipeEffects = [];
+import { FetchRecipesEffect } from './Effects/FetchRecipes.Effect';
+
+export const recipeEffects = [
+  FetchRecipesEffect
+];

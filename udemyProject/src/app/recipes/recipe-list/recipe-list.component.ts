@@ -33,7 +33,6 @@ export class RecipeListComponent implements OnInit, OnDestroy {
           console.log(error);
         }
       );
-    console.log(this.recipeChangedEventSubscription);
   }
 
   onNewRecipe() {

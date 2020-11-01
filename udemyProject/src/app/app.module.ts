@@ -24,7 +24,7 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
     BrowserModule,
     HttpClientModule,
     StoreModule.forRoot(fromApp.appReducer),
-    EffectsModule.forRoot(fromAppEffects.appEffect),
+    EffectsModule.forRoot(fromAppEffects.appEffects),
     AppRoutingModule,
     SharedModule,
     CoreModule,

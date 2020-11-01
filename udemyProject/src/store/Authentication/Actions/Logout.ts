@@ -1,4 +1,4 @@
-import { AbstractAuthenticationStoreAction } from '../AbstractAuthenticationStoreActions';
+import { AbstractAuthenticationStoreAction } from '../AbstractAuthenticationStoreAction';
 import { AuthenticationActionNames } from '../AuthenticationActionNames';
 import { IAuthenticationState } from '../IAuthentication.State';
 
@@ -6,7 +6,7 @@ export class Logout extends AbstractAuthenticationStoreAction {
   readonly type = AuthenticationActionNames.LOGOUT;
 
   constructor() {
-    super(null);
+    super();
   }
 
   execute(state: IAuthenticationState): IAuthenticationState {

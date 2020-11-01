@@ -6,7 +6,7 @@ export class StartEdit extends AbstractShoppingListStoreAction {
   readonly type = ShoppingListActionNames.START_EDIT;
 
   constructor(public payload: number) {
-    super(payload);
+    super();
   }
 
   execute(state: IShoppingListState): IShoppingListState {

@@ -6,7 +6,7 @@ export class DeleteIngredient extends AbstractShoppingListStoreAction {
   readonly type = ShoppingListActionNames.DELETE_INGREDIENT;
 
   constructor() {
-    super(null);
+    super();
   }
 
   execute(state: IShoppingListState): IShoppingListState {

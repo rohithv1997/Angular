@@ -3,23 +3,22 @@ import { Router } from '@angular/router';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { Login } from '../Actions/Login';
 import { AuthenticationActionNames } from '../AuthenticationActionNames';
 
 @Injectable()
 export class AuthRedirectEffect {
-
-  constructor(
-    private actions$: Actions,
-    private router: Router
-  ) {}
+  constructor(private actions$: Actions, private router: Router) {}
 
   @Effect({
-    dispatch: false
+    dispatch: false,
   })
-  public AuthRedirect$: Observable<never> = this.actions$.pipe(
+  public AuthRedirect: Observable<Login> = this.actions$.pipe(
     ofType(AuthenticationActionNames.LOGIN),
-    tap(() => {
-      this.router.navigateByUrl('/');
+    tap((authSuccessAction: Login) => {
+      if (authSuccessAction.payload.isRedirectEnabled) {
+        this.router.navigateByUrl('/');
+      }
     })
   );
 }

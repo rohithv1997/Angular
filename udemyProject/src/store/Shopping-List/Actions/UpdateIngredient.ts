@@ -7,7 +7,7 @@ export class UpdateIngredient extends AbstractShoppingListStoreAction {
   readonly type = ShoppingListActionNames.UPDATE_INGREDIENT;
 
   constructor(public payload: Ingredient) {
-    super(payload);
+    super();
   }
 
   execute(state: IShoppingListState): IShoppingListState {

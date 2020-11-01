@@ -1,4 +1,4 @@
-import { AbstractAuthenticationStoreAction } from './AbstractAuthenticationStoreActions';
+import { AbstractAuthenticationStoreAction } from './AbstractAuthenticationStoreAction';
 import { AuthenticationActionNames } from './AuthenticationActionNames';
 import { IAuthenticationState } from './IAuthentication.State';
 

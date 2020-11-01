@@ -17,7 +17,7 @@ export class RecipeService {
     private recipeSelected: Subject<Recipe>;
     private recipeChangedEvent: Subject<Recipe[]>;
 
-    constructor(private shoppingListService: ShoppingListService, private store: Store<fromApp.IAppState>) {
+    constructor(private store: Store<fromApp.IAppState>) {
         this.recipes = [];
         this.recipeSelected = new Subject<Recipe>();
         this.recipeChangedEvent = new Subject<Recipe[]>();
@@ -48,10 +48,6 @@ export class RecipeService {
         return this.recipes.slice();
     }
 
-    public getRecipe(index: number): Recipe {
-        return this.recipes[index];
-    }
-
     public getRecipeSelectedEvent(): Subject<Recipe> {
         return this.recipeSelected;
     }
@@ -66,20 +62,5 @@ export class RecipeService {
 
     public getReceipeChangedEvent(): Subject<Recipe[]> {
         return this.recipeChangedEvent;
-    }
-
-    public addRecipe(recipe: Recipe): void {
-        this.recipes.push(recipe);
-        this.emitRecipeChangedEvent();
-    }
-
-    public updateRecipe(index: number, newRecipe: Recipe): void {
-        this.recipes[index] = newRecipe;
-        this.emitRecipeChangedEvent();
-    }
-
-    public deleteRecipe(index: number): void{
-        this.recipes.splice(index, 1);
-        this.emitRecipeChangedEvent();
     }
 }

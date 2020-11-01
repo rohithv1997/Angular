@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { filter, map } from 'rxjs/operators';
 import { User } from 'src/models/user.model';
+import { UserRedirection } from 'src/models/UserRedirection.Model';
 import { AuthenticationService } from 'src/services/authentication.service';
 import { LocalStorageService } from 'src/services/localstorage.service';
 import { Login } from '../Actions/Login';
@@ -16,7 +17,7 @@ export class AutoLoginEffect {
   ) {}
 
   @Effect()
-  public AutoLogin$ = this.actions$.pipe(
+  public AutoLogin = this.actions$.pipe(
     ofType(AuthenticationActionNames.AUTO_LOGIN),
     map(() => {
       const userData: {
@@ -37,7 +38,7 @@ export class AutoLoginEffect {
             new Date(userData.tokenExpirationDate).getTime() -
             new Date().getTime();
           this.authService.setLogoutTimer(expirationDuration);
-          return new Login(loadedUser);
+          return new Login(new UserRedirection(loadedUser, true));
         }
       }
     }),

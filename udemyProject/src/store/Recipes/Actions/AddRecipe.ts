@@ -3,10 +3,10 @@ import { AbstractRecipeStoreAction } from '../AbstractRecipeStoreAction';
 import { IRecipeState } from '../IRecipe.State';
 import { RecipeActionNames } from '../RecipeActionNames';
 
-export class SetRecipes extends AbstractRecipeStoreAction {
-  readonly type = RecipeActionNames.SET_RECIPES;
+export class AddRecipe extends AbstractRecipeStoreAction {
+  readonly type = RecipeActionNames.ADD_RECIPE;
 
-  constructor(public payload: Recipe[]) {
+  constructor(public payload: Recipe) {
     super();
   }
 
@@ -14,7 +14,8 @@ export class SetRecipes extends AbstractRecipeStoreAction {
     return {
       ...state,
       recipes: [
-        ...this.payload
+        ...state.recipes,
+        this.payload
       ]
     };
   }

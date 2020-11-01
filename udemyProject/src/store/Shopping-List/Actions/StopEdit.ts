@@ -6,7 +6,7 @@ export class StopEdit extends AbstractShoppingListStoreAction {
   readonly type = ShoppingListActionNames.STOP_EDIT;
 
   constructor() {
-    super(null);
+    super();
   }
 
   execute(state: IShoppingListState): IShoppingListState {

@@ -18,7 +18,7 @@ export class AuthLogoutEffect {
   @Effect({
     dispatch: false,
   })
-  public authLogout$ = this.actions$.pipe(
+  public AuthLogout = this.actions$.pipe(
     ofType(AuthenticationActionNames.LOGOUT),
     tap(() => {
       this.authService.clearLogoutTimer();

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { LoginInfo } from 'src/models/logininfo.model';
+import { UserRedirection } from 'src/models/UserRedirection.Model';
 import { AuthenticationService } from 'src/services/authentication.service';
 import { LocalStorageService } from 'src/services/localstorage.service';
 import { Login } from '../Actions/Login';
@@ -21,7 +22,7 @@ export class AuthLoginEffect {
   ) {}
 
   @Effect()
-  public AuthLogin$: Observable<Login | LoginFail> = this.actions$.pipe(
+  public AuthLogin: Observable<Login | LoginFail> = this.actions$.pipe(
     ofType(AuthenticationActionNames.LOGIN_START),
     switchMap((authData: LoginStart) => {
       return this.authService
@@ -41,7 +42,7 @@ export class AuthLoginEffect {
               responseData.idToken,
               +responseData.expiresIn
             );
-            this.localStorageService.setUser(login.payload);
+            this.localStorageService.setUser(login.payload.user);
             return login;
           }),
           catchError((error) => {

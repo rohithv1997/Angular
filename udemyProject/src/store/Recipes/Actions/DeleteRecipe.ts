@@ -1,21 +1,20 @@
-import { Recipe } from 'src/models/recipe.model';
 import { AbstractRecipeStoreAction } from '../AbstractRecipeStoreAction';
 import { IRecipeState } from '../IRecipe.State';
 import { RecipeActionNames } from '../RecipeActionNames';
 
-export class SetRecipes extends AbstractRecipeStoreAction {
-  readonly type = RecipeActionNames.SET_RECIPES;
+export class DeleteRecipe extends AbstractRecipeStoreAction {
+  readonly type = RecipeActionNames.DELETE_RECIPE;
 
-  constructor(public payload: Recipe[]) {
+  constructor(public payload: number) {
     super();
   }
 
   execute(state: IRecipeState): IRecipeState {
     return {
       ...state,
-      recipes: [
-        ...this.payload
-      ]
+      recipes: state.recipes.filter((recipe, index) => {
+        return index !== this.payload;
+      }),
     };
   }
 }

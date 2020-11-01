@@ -6,6 +6,7 @@ import { Constants } from 'src/helpers/constants';
 import { IAuthResponseData } from 'src/models/IAuthResponseData';
 import { LoginInfo } from 'src/models/logininfo.model';
 import { User } from 'src/models/user.model';
+import { UserRedirection } from 'src/models/UserRedirection.Model';
 import { Login } from 'src/store/Authentication/Actions/Login';
 import { LoginFail } from 'src/store/Authentication/Actions/LoginFail';
 import { Logout } from 'src/store/Authentication/Actions/Logout';
@@ -74,7 +75,7 @@ export class AuthenticationService {
   ): Login {
     const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
     const user = new User(email, userId, token, expirationDate);
-    return new Login(user);
+    return new Login(new UserRedirection(user, true));
   }
 
 }
