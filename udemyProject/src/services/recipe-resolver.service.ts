@@ -29,7 +29,7 @@ export class RecipeResolverService implements Resolve<Recipe[]> {
       filter((recipe) => recipe !== null && recipe !== undefined),
       map((recipes) => {
         if (recipes === undefined || route.params.id > recipes.length - 1) {
-          this.router.navigateByUrl('/auth');
+          this.router.navigateByUrl('/auth').then(r => r);
         }
         return recipes;
       }),

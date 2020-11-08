@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { LoginInfo } from 'src/models/logininfo.model';
-import { UserRedirection } from 'src/models/UserRedirection.Model';
 import { AuthenticationService } from 'src/services/authentication.service';
 import { LocalStorageService } from 'src/services/localstorage.service';
 import { Login } from '../Actions/Login';

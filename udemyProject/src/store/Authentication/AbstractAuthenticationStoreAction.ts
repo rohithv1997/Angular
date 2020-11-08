@@ -1,5 +1,5 @@
-import { AbstractStoreAction } from '../AbstractStoreAction';
-import { IAuthenticationState } from './IAuthentication.State';
+import {AbstractStoreAction} from '../AbstractStoreAction';
+import {IAuthenticationState} from './IAuthentication.State';
 
-export abstract class AbstractAuthenticationStoreAction extends AbstractStoreAction<IAuthenticationState>{
+export abstract class AbstractAuthenticationStoreAction extends AbstractStoreAction<IAuthenticationState> {
 }
