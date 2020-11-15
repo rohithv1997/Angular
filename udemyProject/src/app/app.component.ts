@@ -2,7 +2,7 @@ import {Component, Inject, OnInit, PLATFORM_ID} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {AutoLogin} from 'src/store/Authentication/Actions/AutoLogin';
 import * as fromApp from '../store/IAppState';
-import {isPlatformBrowser} from "@angular/common";
+import {isPlatformBrowser} from '@angular/common';
 
 @Component({
   selector: 'app-root',

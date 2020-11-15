@@ -25,10 +25,9 @@ export class RecipeResolverService implements Resolve<Recipe[]> {
     state: RouterStateSnapshot
   ): Observable<Recipe[]> | Promise<Recipe[]> | Recipe[] {
     return this.store.select('recipes').pipe(
-      map((recipeState) => recipeState.recipes),
-      filter((recipe) => recipe !== null && recipe !== undefined),
-      map((recipes) => {
-        if (recipes === undefined || route.params.id > recipes.length - 1) {
+      map((recipeState) =>  {
+        const recipes = recipeState.recipes;
+        if (recipes === null || recipes === undefined || route.params.id > recipes.length - 1) {
           this.router.navigateByUrl('/auth').then(r => r);
         }
         return recipes;
