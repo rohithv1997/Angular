@@ -1,5 +1,6 @@
 import {
   animate,
+  group,
   keyframes,
   state,
   style,
@@ -137,13 +138,21 @@ import { AnimationState } from './animation.state';
         ),
       ]),
       transition('* => void', [
-        animate(
-          300,
-          style({
-            transform: 'translateX(100px)',
-            opacity: 0,
-          })
-        ),
+        group([
+          animate(
+            300,
+            style({
+              color: 'red',
+            })
+          ),
+          animate(
+            800,
+            style({
+              transform: 'translateX(100px)',
+              opacity: 0,
+            })
+          ),
+        ]),
       ]),
     ]),
   ],
@@ -181,5 +190,13 @@ export class AppComponent {
 
   public onShrink(): void {
     this.wildState = AnimationState.Shrinking;
+  }
+
+  animationStarted(event): void {
+    console.log(event);
+  }
+
+  animationEnded(event): void {
+    console.log(event);
   }
 }
