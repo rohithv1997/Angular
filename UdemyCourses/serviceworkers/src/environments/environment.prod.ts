@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  dataUrl: 'https://jsonplaceholder.typicode.com/posts'
+  dataUrl: 'https://jsonplaceholder.cypress.io/posts'
 };
