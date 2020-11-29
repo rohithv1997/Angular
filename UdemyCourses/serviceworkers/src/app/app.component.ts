@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
 
   public ngOnInit(): void {
     this.http
-      .get<IPost[]>('https://jsonplaceholder.cypress.io/posts')
+      .get<IPost[]>(environment.dataUrl)
       .subscribe(fetchedPosts => (this.posts = fetchedPosts));
   }
 }
