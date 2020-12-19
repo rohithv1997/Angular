@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "ng-angular-cli": {
+      "hosting": {
+        "angularcli": [
+          "ng-angular-cli"
+        ]
+      }
+    }
+  }
+}
